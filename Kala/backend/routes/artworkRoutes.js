@@ -8,6 +8,7 @@ const {
   deleteArtwork,
 } = require("../controllers/artworkController.js");
 const { protect } = require("../middleware/authMiddleware.js");
+const upload = require('../config/cloudinary.js');
 
 
 router.route("/").get(getArtworks);
@@ -16,5 +17,6 @@ router.route("/:id").get(getArtworkById);
 
 router.route("/").post(protect, createArtwork);
 router.route("/:id").put(protect, updateArtWork).delete(protect, deleteArtwork);
+router.route("/").post(protect,upload.single('image'),createArtwork);
 
 module.exports = router;
