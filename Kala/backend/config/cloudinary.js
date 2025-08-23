@@ -2,12 +2,10 @@ const cloudinary = require("cloudinary").v2;
 const { CloudinaryStorage } = require("multer-storage-cloudinary");
 const multer = require("multer");
 
-// Load environment variables right inside this file
+
 require("dotenv").config();
 
-// --- DEBUGGING ---
-// This will print your keys to the backend console when the server starts.
-// You can remove this once it's working.
+
 console.log("--- Cloudinary Config ---");
 console.log(
   "Cloud Name:",
