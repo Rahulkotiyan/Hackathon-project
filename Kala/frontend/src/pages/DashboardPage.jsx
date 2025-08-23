@@ -1,9 +1,8 @@
 
 import React, { useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import axios from "../api/axios";
 import Loader from "../components/Loader";
-//import { updateArtwork } from "../../../backend/controllers/artworkController.js";
 import ExportChecklist from "../components/ExportChecklist";
 
 const EditModal = ({ artwork, onClose, onSave }) => {
@@ -113,7 +112,7 @@ const DashboardPage = () => {
   const fetchArtistArtworks = useCallback(async (artistId) => {
     try {
       setLoadingArtworks(true);
-      const { data } = await axios.get("/api/artworks");
+      const { data } = await axios.get("/artworks");
       setArtworks(data.filter((art) => art.artist._id === artistId));
       setLoadingArtworks(false);
     } catch (error) {
@@ -148,7 +147,7 @@ const DashboardPage = () => {
           Authorization: `Bearer ${userInfo.token}`,
         },
       };
-      const { data } = await axios.post("/api/upload", formData, config);
+      const { data } = await axios.post("/upload", formData, config);
       setImageUrl(data.imageUrl);
       setUploading(false);
     } catch (error) {
@@ -180,7 +179,7 @@ const DashboardPage = () => {
         dimensions,
         imageUrl,
       };
-      await axios.post("/api/artworks", newArtwork, config);
+      await axios.post("/artworks", newArtwork, config);
 
       setTitle("");
       setDescription("");
@@ -208,7 +207,7 @@ const DashboardPage = () => {
         const config = {
           headers: { Authorization: `Bearer ${userInfo.token}` },
         };
-        await axios.delete(`/api/artworks/${artworkId}`, config);
+        await axios.delete(`/artworks/${artworkId}`, config);
         fetchArtistArtworks(userInfo._id); 
       } catch (error) {
         setError("Failed to delete artwork.");
@@ -225,7 +224,7 @@ const DashboardPage = () => {
         },
       };
       await axios.put(
-        `/api/artworks/${updatedArtwork._id}`,
+        `/artworks/${updatedArtwork._id}`,
         updatedArtwork,
         config
       );

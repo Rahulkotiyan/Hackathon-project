@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from '../api/axios';
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 
@@ -20,7 +20,7 @@ const LoginPage = () => {
         e.preventDefault();
         try{
             const config = {headers:{'Content-Type':'application/json'}};
-            const {data} = await axios.post('/api/users/login',{email,password},config);
+            const {data} = await axios.post('/users/login',{email,password},config);
             localStorage.setItem('userInfo',JSON.stringify(data));
             navigate('/dashboard');
         }catch(err){

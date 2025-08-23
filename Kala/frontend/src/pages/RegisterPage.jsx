@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from '../api/axios';
 import React, { useEffect, useState } from 'react'
 import { useNavigate,Link } from 'react-router-dom';
 
@@ -26,7 +26,7 @@ const RegisterPage = () => {
         setError('');
         try{
             const config={headers:{'Content-Type':'application/json'}};
-            const{data} = await axios.post('/api/users/register',{name,email,password},config);
+            const{data} = await axios.post('/users/register',{name,email,password},config);
             localStorage.setItem('userInfo',JSON.stringify(data));
             navigate('/dashboard');
         }catch(err){

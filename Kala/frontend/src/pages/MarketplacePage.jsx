@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Loader from '../components/Loader';
 import ArtCard from '../components/ArtCard';
-import axios from "axios";
+import axios from "../api/axios";
 
 const MarketplacePage = () => {
 
@@ -12,7 +12,7 @@ const MarketplacePage = () => {
         const fetchArtworks = async ()=>{
             try{
                 setLoading(true);
-                const{data} = await axios.get('/api/artworks');
+                const{data} = await axios.get('/artworks');
                 setArtworks(data);
                 setLoading(false);
             }catch(error){

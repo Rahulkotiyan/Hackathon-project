@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from '../api/axios';
 import React, { useState ,useEffect} from 'react'
 import { Link, useParams } from 'react-router-dom'
 import Loader from '../components/Loader';
@@ -13,7 +13,7 @@ const ArtDetailPage = () => {
         const fetchArtwork = async () =>{
             try{
                 setLoading(true);
-                const {data} = await axios.get(`/api/artworks/${id}`);
+                const {data} = await axios.get(`/artworks/${id}`);
                 setArtwork(data);
                 setLoading(false);
             }catch(error){

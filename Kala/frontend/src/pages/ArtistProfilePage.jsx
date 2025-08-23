@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from '../api/axios';
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import Loader from '../components/Loader';
@@ -16,10 +16,10 @@ const ArtistProfilePage = () => {
         const fetchArtistData = async()=>{
             try{
                 setLoading(true);
-                const{data:artistData} = await axios.get(`/api/users/${id}`);
+                const{data:artistData} = await axios.get(`/users/${id}`);
                 setArtist(artistData);
 
-                const {data:allArtworks} = await axios.get('/api/artworks');
+                const {data:allArtworks} = await axios.get('/artworks');
                 setArtworks(allArtworks.filter(art=>art.artist._id===id));
                 setLoading(false);
             }catch(error){

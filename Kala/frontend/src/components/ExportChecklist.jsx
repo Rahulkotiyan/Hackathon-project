@@ -1,5 +1,5 @@
 import React from "react";
-import axios from "axios";
+import axios from "../api/axios";
 import { useState } from "react";
 
 const checklistItems = [
@@ -43,7 +43,7 @@ const ExportChecklist=({artwork,onUpdate})=>{
                 Authorization: `Bearer ${userInfo.token}`,
               },
             };
-            const {data} = await axios.put(`/api/artworks/${artwork._id}`,{exportReady:newChecklist},config);
+            const {data} = await axios.put(`/artworks/${artwork._id}`,{exportReady:newChecklist},config);
             onUpdate(data);
         }catch(error){
             console.error("Failed to update checklist", error);
