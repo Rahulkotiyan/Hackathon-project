@@ -14,7 +14,7 @@ const ArtCard = ({artwork})=>{
               className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
             />
             <div className="absolute top-0 right-0 bg-amber-600 text-white px-3 py-1 m-2 rounded-full text-sm font-semibold">
-              ₹{artwork.price.toLocalString("en-IN")}
+              ₹{artwork.price.toLocaleString("en-IN")}
             </div>
           </div>
           <div className="p-4">

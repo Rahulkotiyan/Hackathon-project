@@ -2,6 +2,24 @@ const cloudinary = require("cloudinary").v2;
 const { CloudinaryStorage } = require("multer-storage-cloudinary");
 const multer = require("multer");
 
+// Load environment variables right inside this file
+require("dotenv").config();
+
+// --- DEBUGGING ---
+// This will print your keys to the backend console when the server starts.
+// You can remove this once it's working.
+console.log("--- Cloudinary Config ---");
+console.log(
+  "Cloud Name:",
+  process.env.CLOUDINARY_CLOUD_NAME ? "Loaded" : "MISSING"
+);
+console.log("API Key:", process.env.CLOUDINARY_API_KEY ? "Loaded" : "MISSING");
+console.log(
+  "API Secret:",
+  process.env.CLOUDINARY_API_SECRET ? "Loaded" : "MISSING"
+);
+console.log("-------------------------");
+
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
   api_key: process.env.CLOUDINARY_API_KEY,
@@ -12,7 +30,6 @@ const storage = new CloudinaryStorage({
   cloudinary: cloudinary,
   params: {
     folder: "Kala",
-    format: async (req, file) => "png", 
     public_id: (req, file) => file.originalname,
   },
 });
