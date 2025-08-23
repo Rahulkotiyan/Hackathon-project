@@ -6,6 +6,7 @@ const {
   createArtwork,
   updateArtWork,
   deleteArtwork,
+  updateVerificationStatus
 } = require("../controllers/artworkController.js");
 const { protect } = require("../middleware/authMiddleware.js");
 const upload = require('../config/cloudinary.js');

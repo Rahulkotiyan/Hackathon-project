@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import Loader from '../components/Loader';
 import ArtCard from '../components/ArtCard';
+import VerifiedBadge from '../components/VerifiedBadge';
 
 const ArtistProfilePage = () => {
 
@@ -42,7 +43,10 @@ const ArtistProfilePage = () => {
             className="w-48 h-48 rounded-full object-cover shadow-xl border-4 border-white"
           />
           <div className="text-center md:text-left">
-            <h1 className="text-4xl font-bold text-gray-800">{artist.name}</h1>
+            <h1 className="text-4xl font-bold text-gray-800">
+              {artist.name}
+              {artist.isVerified && <VerifiedBadge/>}
+              </h1>
             <div className="mt-2 text-lg text-gray-600">
               {artist.artForm} Artist
             </div>

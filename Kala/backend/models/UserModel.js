@@ -13,6 +13,7 @@ const userSchema = mongoose.Schema(
       default: "https://placehold.co/400x400/EFE8D5/4A4A4A?text=Artist",
     },
     location: { type: String, default: "" },
+    isVerified:{type:Boolean,default:false},
   },
   {
     timestamps: true,
