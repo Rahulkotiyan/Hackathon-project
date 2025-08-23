@@ -1,0 +1,16 @@
+TECH STACK:
+
+ReactJS
+MONGODB
+ExpressJS
+NodeJS
+React Router
+Axios
+
+DEPLOYMENT:
+
+RENDER
+
+API TESTING:
+
+POSTMAN 
