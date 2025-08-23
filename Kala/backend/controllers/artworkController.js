@@ -72,8 +72,8 @@ const getArtworkById = async (req, res) => {
     }
 };
 
-const updateArtWork = async (req, res) => {
-    const { title, description, price, dimensions, imageUrl } = req.body;
+const updateArtwork = async (req, res) => {
+    const { title, description, price, dimensions, imageUrl,exportReady } = req.body;
     const artwork = await Artwork.findById(req.params.id);
 
     if (artwork) {
@@ -86,6 +86,10 @@ const updateArtWork = async (req, res) => {
         artwork.dimensions = dimensions || artwork.dimensions;
         artwork.imageUrl = imageUrl || artwork.imageUrl;
 
+        if(exportReady){
+            artwork.exportReady=exportReady;
+        }
+
         const updatedArtwork = await artwork.save();
         res.json(updatedArtwork);
     } else {
@@ -93,4 +97,4 @@ const updateArtWork = async (req, res) => {
     }
 };
 
-module.exports = { getArtworks, getArtworkById, createArtwork, updateArtWork, deleteArtwork };
+module.exports = { getArtworks, getArtworkById, createArtwork, updateArtwork, deleteArtwork };

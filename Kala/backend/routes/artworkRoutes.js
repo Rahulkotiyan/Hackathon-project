@@ -4,7 +4,7 @@ const {
   getArtworks,
   getArtworkById,
   createArtwork,
-  updateArtWork,
+  updateArtwork,
   deleteArtwork,
   updateVerificationStatus
 } = require("../controllers/artworkController.js");
@@ -17,7 +17,7 @@ router.route("/:id").get(getArtworkById);
 
 
 router.route("/").post(protect, createArtwork);
-router.route("/:id").put(protect, updateArtWork).delete(protect, deleteArtwork);
+router.route("/:id").put(protect, updateArtwork).delete(protect, deleteArtwork);
 router.route("/").post(protect,upload.single('image'),createArtwork);
 
 module.exports = router;

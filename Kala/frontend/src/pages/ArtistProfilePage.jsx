@@ -21,7 +21,7 @@ const ArtistProfilePage = () => {
 
                 const {data:allArtworks} = await axios.get('/api/artworks');
                 setArtworks(allArtworks.filter(art=>art.artist._id===id));
-                setLoading(fasle);
+                setLoading(false);
             }catch(error){
                 console.log("Error fetching artist data:",error);
                 setLoading(false);

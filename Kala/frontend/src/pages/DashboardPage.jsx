@@ -3,6 +3,8 @@ import React, { useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Loader from "../components/Loader";
+//import { updateArtwork } from "../../../backend/controllers/artworkController.js";
+import ExportChecklist from "../components/ExportChecklist";
 
 const EditModal = ({ artwork, onClose, onSave }) => {
   const [formData, setFormData] = useState({ ...artwork });
@@ -16,6 +18,8 @@ const EditModal = ({ artwork, onClose, onSave }) => {
     e.preventDefault();
     onSave(formData);
   };
+
+
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
@@ -232,6 +236,14 @@ const DashboardPage = () => {
     }
   };
 
+    const handleArtworkUpdate = (updateArtwork) => {
+      setArtworks((prevArtworks) =>
+        prevArtworks.map((art) =>
+          art._id === updateArtwork._id ? updateArtwork : art
+        )
+      );
+    }; 
+
   if (!userInfo) return <Loader />;
 
   return (
@@ -363,6 +375,9 @@ const DashboardPage = () => {
                       <h3 className="font-semibold">{art.title}</h3>
                       <p>₹{art.price.toLocaleString("en-IN")}</p>
                     </div>
+
+                    <ExportChecklist artwork={art} onUpdate={handleArtworkUpdate}/>
+
                     <div className="flex justify-end space-x-2 mt-4 border-t pt-3">
                       <button
                         onClick={() => setEditingArtwork(art)}
